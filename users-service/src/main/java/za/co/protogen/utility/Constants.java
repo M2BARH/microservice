@@ -1,4 +1,4 @@
-package za.co.protogen.core.utility;
+package za.co.protogen.utility;
 
 import za.co.protogen.domain.User;
 
@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Constant {
+public class Constants {
 
     public static List<User> users = new ArrayList<>();
 

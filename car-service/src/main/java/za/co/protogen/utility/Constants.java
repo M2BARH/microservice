@@ -5,7 +5,7 @@ import za.co.protogen.domain.Car;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Constant {
+public class Constants {
 
     public static List<Car> cars = new ArrayList<>();
 

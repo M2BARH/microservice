@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Constant {
+public class Constants {
 
     public  static List<Reservation> reservations = new ArrayList<>();
 

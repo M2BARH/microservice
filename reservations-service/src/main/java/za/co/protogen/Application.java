@@ -1,21 +1,21 @@
 package za.co.protogen;
 
-import za.co.protogen.core.ReservationService;
-import za.co.protogen.core.impl.ReservationServiceImpl;
-import za.co.protogen.domain.Reservation;
-import za.co.protogen.utility.Constant;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+@SpringBootApplication
+@RestController
 public class Application {
 
     public static void main(String[] args) {
-        ReservationService reservationService = new ReservationServiceImpl(Constant.reservations);
+        SpringApplication.run(Application.class, args);
+    }
 
-        System.out.println("All cars:");
-        for (Reservation reservation : reservationService.getAllReservation()) {
-            System.out.println(reservation.toString());
-        }
-
-        String removedReservation = String.valueOf(reservationService.getReservationById(1L));
-        System.out.println(removedReservation + " was Removed!");
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }

@@ -1,5 +1,6 @@
 package za.co.protogen.core;
 
+import org.springframework.stereotype.Service;
 import za.co.protogen.domain.Reservation;
 
 import java.time.LocalDate;

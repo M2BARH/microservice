@@ -1,53 +1,51 @@
 package za.co.protogen.core.impl;
 
+import org.springframework.stereotype.Service;
 import za.co.protogen.core.CarService;
 import za.co.protogen.domain.Car;
+import za.co.protogen.utility.Constants;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 // CarService class which implements the car service interface
+@Service
 public class CarServiceImpl implements CarService {
 
-    private final List<Car> cars;
-
-    public CarServiceImpl(List<Car>cars) {
-        this.cars = cars;
-    }
     @Override
     public void addCar(Car car) {
-        cars.add(car);
+        Constants.cars.add(car);
     }
 
     @Override
     public void removeCar(String vin) {
-        cars.removeIf(car -> car.getVin().equals(vin));
+        Constants.cars.removeIf(car -> car.getVin().equals(vin));
     }
 
     @Override
     public Car getCarById(String vin) {
-        return cars.stream().filter(car -> car.getVin().equals(vin)).findFirst().orElse(null);
+        return Constants.cars.stream().filter(car -> car.getVin().equals(vin)).findFirst().orElse(null);
     }
 
     @Override
     public List<Car> getAllCars() {
-        return cars;
+        return Constants.cars;
     }
 
     @Override
     public List<Car> getCarsByMake(String make) {
-        return cars.stream().filter(car -> car.getMake().toLowerCase().equalsIgnoreCase(make)).collect(Collectors.toList());
+        return Constants.cars.stream().filter(car -> car.getMake().toLowerCase().equalsIgnoreCase(make)).collect(Collectors.toList());
     }
 
     @Override
     public List<Car> getCarByYear(int year) {
-        return cars.stream().filter(car -> car.getYear() == year).collect(Collectors.toList());
+        return Constants.cars.stream().filter(car -> car.getYear() == year).collect(Collectors.toList());
     }
 
     @Override
     public List<Car> getCarByColor(String color) {
-        return cars.stream().filter(car -> car.getColor().toLowerCase().equalsIgnoreCase(color)).collect(Collectors.toList());
+        return Constants.cars.stream().filter(car -> car.getColor().toLowerCase().equalsIgnoreCase(color)).collect(Collectors.toList());
     }
 
     @Override
@@ -71,33 +69,33 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public double calculateAverageMileage() {
-        double totalMileage = cars.stream().mapToDouble(Car::getMileage).sum();
-        return  totalMileage / cars.size();
+        double totalMileage = Constants.cars.stream().mapToDouble(Car::getMileage).sum();
+        return  totalMileage / Constants.cars.size();
     }
 
     @Override
     public Car findCheapestCar() {
-        return cars.stream().min(Comparator.comparingDouble(Car::getPrice)).orElse(null);
+        return Constants.cars.stream().min(Comparator.comparingDouble(Car::getPrice)).orElse(null);
     }
 
     @Override
     public Car findMostExpensiveCar() {
-        return cars.stream().max(Comparator.comparingDouble(Car::getPrice)).orElse(null);
+        return Constants.cars.stream().max(Comparator.comparingDouble(Car::getPrice)).orElse(null);
     }
 
     @Override
     public Car findNewestCar() {
-        return cars.stream().max(Comparator.comparingInt(Car::getYear)).orElse(null);
+        return Constants.cars.stream().max(Comparator.comparingInt(Car::getYear)).orElse(null);
     }
 
     @Override
     public Car findOldestCar() {
-        return cars.stream().min(Comparator.comparingInt(Car::getYear)).orElse(null);
+        return Constants.cars.stream().min(Comparator.comparingInt(Car::getYear)).orElse(null);
     }
 
     @Override
     public List<Car> searchCars(String make, String model, int year, String color, String engine, String transmission, String fuelType, int mileage, int ownerId, double minPrice, double maxPrice) {
-        return cars.stream().filter(car -> car.getMake().toLowerCase().equalsIgnoreCase(make) ||
+        return Constants.cars.stream().filter(car -> car.getMake().toLowerCase().equalsIgnoreCase(make) ||
                 car.getModel().toLowerCase().equalsIgnoreCase(model) ||
                 car.getYear() == year ||
                 car.getColor().toLowerCase().equalsIgnoreCase(color) ||
