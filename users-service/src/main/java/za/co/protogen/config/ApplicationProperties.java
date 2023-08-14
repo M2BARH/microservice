@@ -1,18 +1,19 @@
 package za.co.protogen.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import za.co.protogen.persistance.repository.UserRepository;
 
-@Component
-@ConfigurationProperties(prefix = "user-service")
+import static za.co.protogen.utility.Constants.users;
+
+@Configuration
 public class ApplicationProperties {
-    private String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    @Bean
+    CommandLineRunner run(UserRepository userRepository) {
+        return (args -> {
+            userRepository.saveAll(users);
+        });
     }
 }

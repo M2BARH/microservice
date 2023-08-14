@@ -3,6 +3,7 @@ package za.co.protogen.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import za.co.protogen.core.UserService;
+import za.co.protogen.core.impl.UserServiceImpl;
 import za.co.protogen.domain.User;
 
 import java.util.List;
@@ -11,35 +12,35 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserServiceApiController {
 
-    private final UserService userService;
+    private final UserServiceImpl userServiceImpl;
 
     @Autowired
-    public UserServiceApiController(UserService userService) {
-        this.userService = userService;
+    public UserServiceApiController(UserServiceImpl userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
 
     @PostMapping
     public  void addCar(@RequestBody User user) {
-        userService.addUser(user);
+        userServiceImpl.addUser(user);
     }
 
     @GetMapping
     public List<User> getAllReservation() {
-        return userService.getAllUsers();
+        return userServiceImpl.getAllUsers();
     }
 
-    @GetMapping("/{vin}")
+    @GetMapping("/{id}")
     public User getUserById(@PathVariable Long id) {
-        return userService.getUserById(id);
+        return userServiceImpl.getUserById(id);
     }
 
     @PutMapping
     public void updatedUser(@RequestBody Long id, User user) {
-        userService.updateUser(id, user);
+        userServiceImpl.updateUser(id, user);
     }
 
     @DeleteMapping("/{id}")
     public void removeUser(Long id) {
-        userService.removeUser(id);
+        userServiceImpl.removeUser(id);
     }
 }

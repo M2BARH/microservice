@@ -1,22 +1,46 @@
 package za.co.protogen.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+
 import java.util.ArrayList;
 
 // Car entity
+@Entity
+@Table
 public class Car {
 
+    @Id
+    @SequenceGenerator(name = "car-sequence", sequenceName = "car-sequence", allocationSize = 1)
+    private String vin;
     private String make;
     private String model;
-    private int year;
+    private int _year;
     private String color;
     private String engine;
     private String transmission;
     private String fuelType;
     private double mileage;
-    private String vin;
     private double price;
     private double ownerId;
     private ArrayList<String> features;
+
+    public Car(String vin, String make, String model, int _year, String color, String engine, String transmission, String fuelType, double mileage, double price, double ownerId, ArrayList<String> features) {
+        this.vin = vin;
+        this.make = make;
+        this.model = model;
+        this._year = _year;
+        this.color = color;
+        this.engine = engine;
+        this.transmission = transmission;
+        this.fuelType = fuelType;
+        this.mileage = mileage;
+        this.price = price;
+        this.ownerId = ownerId;
+        this.features = features;
+    }
 
     // null args constructor
     public Car() {
@@ -39,12 +63,12 @@ public class Car {
         this.model = model;
     }
 
-    public int getYear() {
-        return year;
+    public int get_year() {
+        return _year;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void set_year(int _year) {
+        this._year = _year;
     }
 
     public String getColor() {
@@ -126,7 +150,7 @@ public class Car {
         return "Car{" +
                 "make='" + make + '\'' +
                 ", model='" + model + '\'' +
-                ", year=" + year +
+                ", year=" + _year +
                 ", color='" + color + '\'' +
                 ", engine='" + engine + '\'' +
                 ", transmission='" + transmission + '\'' +

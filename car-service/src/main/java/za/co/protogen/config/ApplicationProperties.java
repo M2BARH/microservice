@@ -1,18 +1,19 @@
 package za.co.protogen.config;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import za.co.protogen.persistence.repository.CarRepository;
 
-@Component
-@ConfigurationProperties(prefix = "car-service")
+import static za.co.protogen.utility.Constants.cars;
+
+@Configuration
 public class ApplicationProperties {
-    private String name;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    @Bean
+    CommandLineRunner run(CarRepository carRepository) {
+        return (args -> {
+            carRepository.saveAll(cars);
+        });
     }
 }

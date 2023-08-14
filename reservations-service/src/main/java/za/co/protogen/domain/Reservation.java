@@ -2,10 +2,19 @@ package za.co.protogen.domain;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+
 // Reservation entity
+@Entity
+@Table
 public class Reservation {
 
     // reservation properties
+    @Id
+    @SequenceGenerator(name = "reservation-sequence", sequenceName = "reservation-sequence", allocationSize = 1)
     private Long id;
     private Long userId;
     private Long cardId;
@@ -16,6 +25,16 @@ public class Reservation {
 
     // reservation null args constructor
     public Reservation() {
+    }
+
+    public Reservation(Long id, Long userId, Long cardId, LocalDate fromDate, LocalDate toDate, String pickUpLocation, String dropOffLocation) {
+        this.id = id;
+        this.userId = userId;
+        this.cardId = cardId;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.pickUpLocation = pickUpLocation;
+        this.dropOffLocation = dropOffLocation;
     }
 
     // beginning of getters and setters

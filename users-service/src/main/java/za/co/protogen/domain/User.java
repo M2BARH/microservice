@@ -1,10 +1,19 @@
 package za.co.protogen.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+
 import java.time.LocalDate;
 
 // user entity class
+@Entity
+@Table(name = "\"user\"")
 public class User {
 
+    @Id
+    @SequenceGenerator(name = "user-sequence", sequenceName = "user-sequence", allocationSize = 1)
     // user properties
     private Long id;
     private String firstName;
@@ -15,6 +24,14 @@ public class User {
 
     // user empty constructor
     public User() {
+    }
+
+    public User(Long id, String firstName, String lastName, LocalDate dateOfBirth, String rsaId) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.rsaId = rsaId;
     }
 
     // start of user getters and setters
