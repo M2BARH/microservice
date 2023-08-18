@@ -14,7 +14,7 @@ public class Constants {
         Car car1 = new Car();
         car1.setMake("Toyota");
         car1.setModel("Corolla");
-        car1.set_year(2021);
+        car1.setCarYear(2021);
         car1.setColor("White");
         car1.setEngine("1.8L");
         car1.setTransmission("Automatic");
@@ -29,7 +29,7 @@ public class Constants {
         Car car2 = new Car();
         car2.setMake("Honda");
         car2.setModel("Civic");
-        car2.set_year(2020);
+        car2.setCarYear(2020);
         car2.setColor("Red");
         car2.setEngine("1.5L");
         car2.setTransmission("CVT");

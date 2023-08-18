@@ -1,5 +1,6 @@
 package za.co.protogen.core.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import za.co.protogen.core.UserService;
@@ -16,6 +17,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RestTemplate restTemplate;
 
+    @Autowired
     public UserServiceImpl(UserRepository userRepository, RestTemplate restTemplate) {
         this.userRepository = userRepository;
         this.restTemplate = restTemplate;

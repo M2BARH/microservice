@@ -18,9 +18,9 @@ public interface CarService {
 
     List<Car> getCarsByMake(String make); // retrieve a list of identified by make in a car list
 
-    List<Car> getCarByYear(int year); // retrieve a list of identified by year in a car list
+//    List<Car> getCarByYear(int carYear); // retrieve a list of identified by year in a car list
 
-    List<Car> getCarByColor(String color); // retrieve a list of identified by color in a car list
+    List<Car> getCarsByColor(String color); // retrieve a list of identified by color in a car list
 
     void updateCar(String vin, Car updatedCar); // update the car attributes for a car identified by vin
 
@@ -34,6 +34,6 @@ public interface CarService {
 
     Car findOldestCar(); // retrieve the oldest can in a cars list
 
-    List<Car> searchCars(String make, String model, int year, String color, String engine, String transmission,
+    List<Car> searchCars(String make, String model, int carYear, String color, String engine, String transmission,
                          String fuelType, int mileage, int ownerId, double minPrice, double maxPrice);  // retrieve a list of all cars identified by given attributes
 }

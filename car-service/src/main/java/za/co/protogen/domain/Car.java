@@ -1,37 +1,46 @@
 package za.co.protogen.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 
 // Car entity
 @Entity
-@Table
+@Table(name = "car")
 public class Car {
 
     @Id
+    @Column
     @SequenceGenerator(name = "car-sequence", sequenceName = "car-sequence", allocationSize = 1)
     private String vin;
+    @Column
     private String make;
+    @Column
     private String model;
-    private int _year;
+    @Column
+    private int carYear;
+    @Column
     private String color;
+    @Column
     private String engine;
+    @Column
     private String transmission;
+    @Column
     private String fuelType;
+    @Column
     private double mileage;
+    @Column
     private double price;
+    @Column
     private double ownerId;
+    @Column
     private ArrayList<String> features;
 
-    public Car(String vin, String make, String model, int _year, String color, String engine, String transmission, String fuelType, double mileage, double price, double ownerId, ArrayList<String> features) {
+    public Car(String vin, String make, String model, int carYear, String color, String engine, String transmission, String fuelType, double mileage, double price, double ownerId, ArrayList<String> features) {
         this.vin = vin;
         this.make = make;
         this.model = model;
-        this._year = _year;
+        this.carYear = carYear;
         this.color = color;
         this.engine = engine;
         this.transmission = transmission;
@@ -63,12 +72,12 @@ public class Car {
         this.model = model;
     }
 
-    public int get_year() {
-        return _year;
+    public int getCarYear() {
+        return carYear;
     }
 
-    public void set_year(int _year) {
-        this._year = _year;
+    public void setCarYear(int carYear) {
+        this.carYear = carYear;
     }
 
     public String getColor() {
@@ -147,18 +156,18 @@ public class Car {
     // toString method which, help format the printed results in Application class
     @Override
     public String toString() {
-        return "Car{" +
+        return "Car: {" +
                 "make='" + make + '\'' +
                 ", model='" + model + '\'' +
-                ", year=" + _year +
+                ", carYear=" + carYear + '\'' +
                 ", color='" + color + '\'' +
                 ", engine='" + engine + '\'' +
                 ", transmission='" + transmission + '\'' +
                 ", fuelType='" + fuelType + '\'' +
                 ", mileage=" + mileage +
                 ", vin='" + vin + '\'' +
-                ", price=" + price +
-                ", ownerId=" + ownerId +
+                ", price=" + price + '\'' +
+                ", ownerId=" + ownerId + '\'' +
                 ", features=" + features +
                 '}';
     }

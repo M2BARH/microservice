@@ -30,7 +30,6 @@ public class ReservationServiceImpl implements ReservationService {
         reservationRepository.save(reservation);
     }
 
-
     // method to remove reservation from reservations list
     @Override
     public void removeReservation(Long id) {

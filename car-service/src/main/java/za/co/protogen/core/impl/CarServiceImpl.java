@@ -1,6 +1,6 @@
 package za.co.protogen.core.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import za.co.protogen.core.CarService;
 import za.co.protogen.domain.Car;
@@ -12,14 +12,10 @@ import java.util.stream.Collectors;
 
 // CarService class which implements the car service interface
 @Service
+@RequiredArgsConstructor
 public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
-
-    @Autowired
-    public CarServiceImpl(CarRepository carRepository) {
-        this.carRepository = carRepository;
-    }
 
     @Override
     public void addCar(Car car) {
@@ -50,13 +46,13 @@ public class CarServiceImpl implements CarService {
         return carRepository.findByMake(make);
     }
 
-    @Override
-    public List<Car> getCarByYear(int year) {
-        return carRepository.findByYear(year);
-    }
+//    @Override
+//    public List<Car> getCarByYear(int carYear) {
+//        return carRepository.findByYear(carYear);
+//    }
 
     @Override
-    public List<Car> getCarByColor(String color) {
+    public List<Car> getCarsByColor(String color) {
         return carRepository.findByColor(color);
     }
 
@@ -66,7 +62,7 @@ public class CarServiceImpl implements CarService {
         if (existingCar != null) {
             existingCar.setMake(updatedCar.getMake());
             existingCar.setModel(updatedCar.getModel());
-            existingCar.set_year(updatedCar.get_year());
+            existingCar.setCarYear(updatedCar.getCarYear());
             existingCar.setColor(updatedCar.getColor());
             existingCar.setEngine(updatedCar.getEngine());
             existingCar.setTransmission(updatedCar.getTransmission());
@@ -101,22 +97,22 @@ public class CarServiceImpl implements CarService {
     @Override
     public Car findNewestCar() {
         List<Car> allCars = carRepository.findAll();
-        return allCars.stream().max(Comparator.comparingInt(Car::get_year)).orElse(null);
+        return allCars.stream().max(Comparator.comparingInt(Car::getCarYear)).orElse(null);
     }
 
     @Override
     public Car findOldestCar() {
         List<Car> allCars = carRepository.findAll();
-        return allCars.stream().min(Comparator.comparingInt(Car::get_year)).orElse(null);
+        return allCars.stream().min(Comparator.comparingInt(Car::getCarYear)).orElse(null);
     }
 
     @Override
-    public List<Car> searchCars(String make, String model, int year, String color, String engine, String transmission,
+    public List<Car> searchCars(String make, String model, int carYear, String color, String engine, String transmission,
                                 String fuelType, int mileage, int ownerId, double minPrice, double maxPrice) {
         List<Car> allCars = carRepository.findAll();
         return allCars.stream().filter(car -> car.getMake().toLowerCase().equalsIgnoreCase(make) ||
                 car.getModel().toLowerCase().equalsIgnoreCase(model) ||
-                car.get_year() == year ||
+                car.getCarYear() == carYear ||
                 car.getColor().toLowerCase().equalsIgnoreCase(color) ||
                 car.getEngine().toLowerCase().equalsIgnoreCase(engine) ||
                 car.getTransmission().toLowerCase().equalsIgnoreCase(transmission) ||

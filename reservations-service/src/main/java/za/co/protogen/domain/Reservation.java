@@ -1,11 +1,11 @@
 package za.co.protogen.domain;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+
+import java.time.LocalDate;
 
 // Reservation entity
 @Entity
@@ -93,19 +93,5 @@ public class Reservation {
     public void setDropOffLocation(String dropOffLocation) {
         this.dropOffLocation = dropOffLocation;
     }
-    // beginning of getters and setters
-
-    // toString method, to format printed data
-    @Override
-    public String toString() {
-        return "Reservation: {" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", cardId=" + cardId +
-                ", fromDate=" + fromDate +
-                ", toDate=" + toDate +
-                ", pickUpLocation='" + pickUpLocation + '\'' +
-                ", dropOffLocation='" + dropOffLocation + '\'' +
-                '}';
-    }
+    // end of getters and setters
 }
