@@ -7,13 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="eureka-service" />
-        <module name="car-service" />
-        <module name="config-service" />
         <module name="users-service" />
-        <module name="gateway-service" />
+        <module name="structure" />
+        <module name="car-service" />
       </profile>
-      <profile name="Annotation profile for microservices" enabled="true">
+      <profile name="Annotation profile for services" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -26,24 +24,10 @@
         <module name="reservations-service" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="config-server" target="17" />
-      <module name="infrastructure" target="20" />
-      <module name="protogen (1)" target="17" />
-      <module name="protogen (2)" target="1.5" />
-      <module name="protogen (3)" target="1.5" />
-      <module name="services" target="20" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="car-service" options="-parameters" />
-      <module name="config-server" options="-parameters" />
-      <module name="config-service" options="-parameters" />
-      <module name="eureka-service" options="-parameters" />
-      <module name="gateway-service" options="-parameters" />
-      <module name="protogen (1)" options="-parameters" />
-      <module name="protogen (2)" options="" />
       <module name="reservations-service" options="-parameters" />
       <module name="users-service" options="-parameters" />
     </option>
