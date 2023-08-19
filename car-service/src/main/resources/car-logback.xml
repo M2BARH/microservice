@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+    <include resource = "or/springframework/boot/logging/logback/defaults.xml" />
+
+    <springProperty scope = "context" name = "springAppName" source = "spring.application.name" />
+
+    <property name = "LOG_FILE" value = "${BUILD_FOLDER: -build}/${springAppName}" />
+
+    <!-- Console Appender -->
+    <appender name = "CONSOLE"
+              class = "ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern> %d [%thread] %-5level %logger{35} - %msg%n </pattern>
+        </encoder>
+    </appender>
+
+    <!-- File Appender -->
+    <appender name = "FILE"
+              class = "ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE}</file>
+        <rollingPolicy class = "ch.qos.logback.core.rolling.TimeBasedRollingPolicy" >
+            <fileNamePattern>${LOG_FILE}.%d{yyy-MM-dd}.gz</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern> %d [%thread] %-5level %logger{35} - %msg%n </pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root Logger -->
+    <root level = "INFO">
+        <appender-ref ref = "CONSOLE" />
+    </root>
+</configuration>

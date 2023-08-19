@@ -15,7 +15,6 @@ paths:
         content:
           application/json:
             schema:
-              type: object
               $ref: '#/components/schemas/CarDTO'
       responses:
         '201':
@@ -34,7 +33,7 @@ paths:
                 items:
                   $ref: '#/components/schemas/CarDTO'
 
-  /cars/{vin}:
+  /cars/vin/{vin}:
     get:
       summary: Retrieve a car by vin number
       operationId: getCarByVin
@@ -51,8 +50,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/CarDTO'
+                $ref: '#/components/schemas/CarDTO'
         '404':
           description: Car not found
 
@@ -92,7 +90,7 @@ paths:
         '404':
           description: Car not found
 
-  /cars/{make}:
+  /cars/make/{make}:
     get:
       summary: Retrieve a car by make
       operationId: getCarByMake
@@ -115,7 +113,7 @@ paths:
         '404':
           description: Car not found
 
-  /cars/{color}:
+  /cars/color/{color}:
     get:
       summary: Retrieve a car by color
       operationId: getCarByColor
