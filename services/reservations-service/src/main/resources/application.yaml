@@ -1,0 +1,111 @@
+openapi: 3.0.0
+
+info:
+  title: Protogen API
+  version: 1.0.0Beta
+  description: Protogen API, implemented with OpenAPI Codegen
+
+paths:
+  /reservations:
+    post:
+      summary: Creates a reservation
+      operationId: createReservation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationDTO'
+      responses:
+        '201':
+          description: Reservation added successfully
+
+    get:
+      summary: Retrieves all reservations that a user has access to
+      operationId: getAllReservation
+      responses:
+        '200':
+          description: Retrieve success response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReservationDTO'
+
+  /reservations/{id}:
+    get:
+      summary: Retrieve a reservation by id
+      operationId: getReservationById
+      parameters:
+        - name: id
+          in: path
+          description: id of a reservation to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Retrieve success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationDTO'
+        '404':
+          description: Reservation not found
+
+    delete:
+      summary: Remove a reservation by id
+      operationId: removeReservationById
+      parameters:
+        - name: id
+          in: query
+          description: id of a reservation to remove
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Reservation removed successfully
+
+    put:
+      summary: update reservation by id
+      operationId: updateReservationById
+      parameters:
+        - name: id
+          in: path
+          description: id of a reservation to update
+          required: true
+          schema:
+            type: string
+      requiredBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationDTO'
+      responses:
+        '200':
+          description: Reservation updated successfully
+        '404':
+          description: Reservation not found
+
+components:
+  schemas:
+    ReservationDTO:
+      type: object
+      properties:
+        id:
+          type: long
+        userId:
+          type: long
+        cardId:
+          type: long
+        fromDate:
+          type: date
+        toDate:
+          type: date
+        pickUpLocation:
+          type: string
+        dropOffLocation:
+          type: string

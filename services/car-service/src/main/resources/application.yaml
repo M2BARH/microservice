@@ -1,0 +1,167 @@
+openapi: 3.0.0
+
+info:
+  title: Protogen API
+  version: 1.0.0Beta
+  description: Protogen API, implemented with OpenAPI Codegen
+
+paths:
+  /cars:
+    post:
+      summary: Creates a car
+      operationId: createCar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarDTO'
+      responses:
+        '201':
+          description: Car added successfully
+
+    get:
+      summary: Retrieves all cars that a user has access to
+      operationId: getAllCars
+      responses:
+        '200':
+          description: Retrieve success response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarDTO'
+
+  /cars/vin/{vin}:
+    get:
+      summary: Retrieve a car by vin number
+      operationId: getCarByVin
+      parameters:
+        - name: vin
+          in: path
+          description: vin number of a car to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Retrieve success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarDTO'
+        '404':
+          description: Car not found
+
+    delete:
+      summary: Remove a car by vin number
+      operationId: removeCar
+      parameters:
+        - name: vin
+          in: path
+          description: vin number of a car to remove
+          required: true
+          schema:
+            type: string
+      response:
+        '204':
+          description: Car removed successfully
+
+    put:
+      summary: update a car by vin number
+      operationId: updateCar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarDTO'
+      parameters:
+        - name: vin
+          in: path
+          description: vin number of a car to update
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Car updated successfully
+        '404':
+          description: Car not found
+
+  /cars/make/{make}:
+    get:
+      summary: Retrieve a car by make
+      operationId: getCarByMake
+      parameters:
+        - name: make
+          in: path
+          description: make of a car to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Retrieve success response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarDTO'
+        '404':
+          description: Car not found
+
+  /cars/color/{color}:
+    get:
+      summary: Retrieve a car by color
+      operationId: getCarByColor
+      parameters:
+        - name: color
+          in: path
+          description: color of a car to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Retrieve success response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarDTO'
+        '404':
+          description: Car not found
+
+components:
+  schemas:
+    CarDTO:
+      type: object
+      properties:
+        vin:
+          type: string
+        make:
+          type: string
+        model:
+          type: string
+        carYear:
+          type: int
+        color:
+          type: string
+        engine:
+          type: string
+        transmission:
+          type: string
+        fuelType:
+          type: string
+        mileage:
+          type: string
+        price:
+          type: double
+        ownerId:
+          type: double
+        features:
+          type: arrayList

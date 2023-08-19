@@ -4,15 +4,19 @@
     <file url="file://$PROJECT_DIR$/infrastructure/config-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infrastructure/config-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infrastructure/eureka-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/infrastructure/eureka-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infrastructure/gateway-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infrastructure/gateway-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infrastructure/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/infrastructure/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/car-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services/car-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/reservations-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services/reservations-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/users-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services/users-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../services/car-service/src/main/java" charset="UTF-8" />
