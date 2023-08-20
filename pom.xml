@@ -16,6 +16,7 @@
         <module>infrastructure/config-service</module>
         <module>infrastructure/eureka-service</module>
         <module>infrastructure/gateway-service</module>
+        <module>infrastructure/oauth-service</module>
     </modules>
 
     <properties>

@@ -11,6 +11,7 @@
         <module name="config-service" />
         <module name="car-service" />
         <module name="users-service" />
+        <module name="oauth-service" />
         <module name="gateway-service" />
       </profile>
       <profile name="Annotation profile for microservices" enabled="true">

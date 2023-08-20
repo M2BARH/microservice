@@ -43,7 +43,7 @@ paths:
           description: id of a reservation to retrieve
           required: true
           schema:
-            type: string
+            type: long
       responses:
         '200':
           description: Retrieve success response
@@ -63,7 +63,7 @@ paths:
           description: id of a reservation to remove
           required: true
           schema:
-            type: string
+            type: long
       responses:
         '204':
           description: Reservation removed successfully
@@ -77,7 +77,7 @@ paths:
           description: id of a reservation to update
           required: true
           schema:
-            type: string
+            type: long
       requiredBody:
         required: true
         content:

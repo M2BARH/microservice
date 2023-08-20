@@ -5,6 +5,7 @@ import com.example.carservice.models.CarDTO;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import za.co.protogen.adapter.CarMapper;
@@ -14,17 +15,18 @@ import za.co.protogen.domain.Car;
 import java.util.List;
 
 @RestController
+@RefreshScope
 @RequiredArgsConstructor
 public class CarServiceApiController implements CarsApi {
 
     private final CarServiceImpl carServiceImpl;
     private final CarMapper carMapper;
-    private final Logger logger = LoggerFactory.getLogger(CarServiceImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(CarServiceApiController.class);
 
 
     @Override
     public ResponseEntity<Void> createCar(CarDTO carDTO) {
-        logger.info("Fetching adding a car to the database");
+        logger.info("Adding a car to the database");
         Car car = carMapper.dtoToCar(carDTO);
         carServiceImpl.addCar(car);
         return null;

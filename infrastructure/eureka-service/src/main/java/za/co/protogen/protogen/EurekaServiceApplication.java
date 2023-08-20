@@ -2,12 +2,14 @@ package za.co.protogen.protogen;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
-public class ProtogenApplication {
+@EnableEurekaServer
+public class EurekaServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProtogenApplication.class, args);
+		SpringApplication.run(EurekaServiceApplication.class, args);
 	}
 
 }

@@ -30,7 +30,8 @@ paths:
             application/json:
               schema:
                 type: array
-                $ref: '#/components/schemas/UserDTO'
+                items:
+                  $ref: '#/components/schemas/UserDTO'
 
   /users/{id}:
     get:
@@ -42,7 +43,7 @@ paths:
           description: id of a user to retrieve
           required: true
           schema:
-            type: string
+            type: long
       responses:
         '200':
           description: Retrieve success response
@@ -62,7 +63,7 @@ paths:
           description: id of a user to remove
           required: true
           schema:
-            type: string
+            type: long
       response:
         '204':
           description: User removed successfully
@@ -76,7 +77,7 @@ paths:
           description: id of a user to update
           required: true
           schema:
-            type: string
+            type: long
       requiredBody:
         required: true
         content:
@@ -86,10 +87,6 @@ paths:
       responses:
         '200':
           description: User updated successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserDTO'
         '404':
           description: User not found
 
