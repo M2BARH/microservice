@@ -1,9 +1,6 @@
 package za.co.protogen.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -13,13 +10,17 @@ import java.time.LocalDate;
 public class User {
 
     @Id
+    @Column(name = "id")
     @SequenceGenerator(name = "user-sequence", sequenceName = "user-sequence", allocationSize = 1)
     // user properties
     private Long id;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
-
+    @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
+    @Column(name = "rsa_id")
     private String rsaId;
 
     // user empty constructor

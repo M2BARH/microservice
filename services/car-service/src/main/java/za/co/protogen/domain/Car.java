@@ -6,34 +6,34 @@ import java.util.ArrayList;
 
 // Car entity
 @Entity
-@Table(name = "car")
+@Table(name = "car", schema = "public")
 public class Car {
 
     @Id
-    @Column
+    @Column(name = "vin")
     @SequenceGenerator(name = "car-sequence", sequenceName = "car-sequence", allocationSize = 1)
     private String vin;
-    @Column
+    @Column(name = "make")
     private String make;
-    @Column
+    @Column(name = "model")
     private String model;
-    @Column
+    @Column(name = "car_year")
     private int carYear;
-    @Column
+    @Column(name = "color")
     private String color;
-    @Column
+    @Column(name = "engine")
     private String engine;
-    @Column
+    @Column(name = "transmission")
     private String transmission;
-    @Column
+    @Column(name = "fuel_type")
     private String fuelType;
-    @Column
+    @Column(name = "mileage")
     private double mileage;
-    @Column
+    @Column(name = "price")
     private double price;
-    @Column
+    @Column(name = "owner_id")
     private double ownerId;
-    @Column
+    @Column(name = "features")
     private ArrayList<String> features;
 
     public Car(String vin, String make, String model, int carYear, String color, String engine, String transmission, String fuelType, double mileage, double price, double ownerId, ArrayList<String> features) {

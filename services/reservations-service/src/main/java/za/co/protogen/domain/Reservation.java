@@ -1,9 +1,6 @@
 package za.co.protogen.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -14,13 +11,20 @@ public class Reservation {
 
     // reservation properties
     @Id
+    @Column(name = "id")
     @SequenceGenerator(name = "reservation-sequence", sequenceName = "reservation-sequence", allocationSize = 1)
     private Long id;
+    @Column(name = "user_id")
     private Long userId;
+    @Column(name = "car_id")
     private Long carId;
+    @Column(name = "from_date")
     private LocalDate fromDate;
+    @Column(name = "to_date")
     private LocalDate toDate;
+    @Column(name = "pick_up_location")
     private String pickUpLocation;
+    @Column(name = "drop_of_location")
     private String dropOffLocation;
 
     // reservation null args constructor
