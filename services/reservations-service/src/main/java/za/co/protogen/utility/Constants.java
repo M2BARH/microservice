@@ -15,7 +15,7 @@ public class Constants {
         Reservation reservation1 = new Reservation();
         reservation1.setId(1L);
         reservation1.setUserId(1L);
-        reservation1.setCardId(1L);
+        reservation1.setCarId(1L);
         reservation1.setFromDate(LocalDate.of(2023, 6, 10));
         reservation1.setToDate(LocalDate.of(2023, 6, 15));
         reservation1.setPickUpLocation("New York");
@@ -25,7 +25,7 @@ public class Constants {
         Reservation reservation2 = new Reservation();
         reservation2.setId(2L);
         reservation2.setUserId(2L);
-        reservation2.setCardId(2L);
+        reservation2.setCarId(2L);
         reservation2.setFromDate(LocalDate.of(2023, 6, 12));
         reservation2.setToDate(LocalDate.of(2023, 6, 18));
         reservation2.setPickUpLocation("London");

@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface CarRepository extends JpaRepository<Car, String> {
     List<Car> findByMake(String make);
-//    List<Car> findByYear(int carYear);
+    List<Car> findByYear(int carYear);
     List<Car> findByColor(String color);
 }

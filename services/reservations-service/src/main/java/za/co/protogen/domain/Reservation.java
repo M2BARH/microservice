@@ -17,7 +17,7 @@ public class Reservation {
     @SequenceGenerator(name = "reservation-sequence", sequenceName = "reservation-sequence", allocationSize = 1)
     private Long id;
     private Long userId;
-    private Long cardId;
+    private Long carId;
     private LocalDate fromDate;
     private LocalDate toDate;
     private String pickUpLocation;
@@ -27,10 +27,10 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(Long id, Long userId, Long cardId, LocalDate fromDate, LocalDate toDate, String pickUpLocation, String dropOffLocation) {
+    public Reservation(Long id, Long userId, Long carId, LocalDate fromDate, LocalDate toDate, String pickUpLocation, String dropOffLocation) {
         this.id = id;
         this.userId = userId;
-        this.cardId = cardId;
+        this.carId = carId;
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.pickUpLocation = pickUpLocation;
@@ -54,12 +54,12 @@ public class Reservation {
         this.userId = userId;
     }
 
-    public Long getCardId() {
-        return cardId;
+    public Long getCarId() {
+        return carId;
     }
 
-    public void setCardId(Long cardId) {
-        this.cardId = cardId;
+    public void setCarId(Long carId) {
+        this.carId = carId;
     }
 
     public LocalDate getFromDate() {

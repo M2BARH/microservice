@@ -136,6 +136,29 @@ paths:
         '404':
           description: Car not found
 
+  /cars/year/{carYear}:
+    get:
+      summary: Retrieve a car by year
+      operationId: getCarByCarYear
+      parameters:
+        - name: carYear
+          in: path
+          description: year of a car to retrieve
+          required: true
+          schema:
+            type: int
+      responses:
+        '200':
+          description: Retrieve success response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarDTO'
+        '404':
+          description: Car not found
+
 components:
   schemas:
     CarDTO:

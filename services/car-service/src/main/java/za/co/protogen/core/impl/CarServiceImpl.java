@@ -46,10 +46,10 @@ public class CarServiceImpl implements CarService {
         return carRepository.findByMake(make);
     }
 
-//    @Override
-//    public List<Car> getCarByYear(int carYear) {
-//        return carRepository.findByYear(carYear);
-//    }
+    @Override
+    public List<Car> getCarByYear(int carYear) {
+        return carRepository.findByYear(carYear);
+    }
 
     @Override
     public List<Car> getCarsByColor(String color) {

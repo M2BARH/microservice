@@ -2,7 +2,6 @@ package za.co.protogen.core.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import za.co.protogen.core.ReservationService;
 import za.co.protogen.domain.Reservation;
 import za.co.protogen.persistance.repository.ReservationRepository;
@@ -59,7 +58,7 @@ public class ReservationServiceImpl implements ReservationService {
         if (existingReservation != null) { // if the reservation is present within the list. The following attributes are updated
             existingReservation.setId(updatedReservation.getId());
             existingReservation.setUserId(updatedReservation.getUserId());
-            existingReservation.setCardId(updatedReservation.getCardId());
+            existingReservation.setCarId(updatedReservation.getCarId());
             existingReservation.setFromDate(updatedReservation.getFromDate());
             existingReservation.setToDate(updatedReservation.getToDate());
             existingReservation.setPickUpLocation(updatedReservation.getPickUpLocation());
@@ -73,7 +72,7 @@ public class ReservationServiceImpl implements ReservationService {
         List<Reservation> allReservations = reservationRepository.findAll();
         return allReservations.stream().filter(reservation -> Objects.equals(reservation.getId(), id) ||
                 Objects.equals(reservation.getUserId(), userId) ||
-                Objects.equals(reservation.getCardId(), cardId) ||
+                Objects.equals(reservation.getCarId(), cardId) ||
                 reservation.getFromDate().equals(fromDate) ||
                 reservation.getToDate().equals(toDate) ||
                 reservation.getPickUpLocation().toLowerCase().equals(pickUpLocation) ||

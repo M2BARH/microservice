@@ -23,7 +23,6 @@ public class CarServiceApiController implements CarsApi {
     private final CarMapper carMapper;
     private final Logger logger = LoggerFactory.getLogger(CarServiceApiController.class);
 
-
     @Override
     public ResponseEntity<Void> createCar(CarDTO carDTO) {
         logger.info("Adding a car to the database");
@@ -36,6 +35,14 @@ public class CarServiceApiController implements CarsApi {
     public ResponseEntity<List<CarDTO>> getAllCars() {
         logger.info("Fetching all cars from the database");
         List<Car> car =  carServiceImpl.getAllCars();
+        List<CarDTO> carDTO = carMapper.carToDTO(car);
+        return ResponseEntity.ok(carDTO);
+    }
+
+    @Override
+    public ResponseEntity<List<CarDTO>> getCarByCarYear(Integer carYear) {
+        logger.info("Fetching all cars identified by year: " + carYear + ",  from the database");
+        List<Car> car =  carServiceImpl.getCarByYear(carYear);
         List<CarDTO> carDTO = carMapper.carToDTO(car);
         return ResponseEntity.ok(carDTO);
     }

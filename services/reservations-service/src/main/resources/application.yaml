@@ -59,7 +59,7 @@ paths:
       operationId: removeReservationById
       parameters:
         - name: id
-          in: query
+          in: path
           description: id of a reservation to remove
           required: true
           schema:

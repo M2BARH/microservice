@@ -18,7 +18,7 @@ public interface CarService {
 
     List<Car> getCarsByMake(String make); // retrieve a list of identified by make in a car list
 
-//    List<Car> getCarByYear(int carYear); // retrieve a list of identified by year in a car list
+    List<Car> getCarByYear(int carYear); // retrieve a list of identified by year in a car list
 
     List<Car> getCarsByColor(String color); // retrieve a list of identified by color in a car list
 
