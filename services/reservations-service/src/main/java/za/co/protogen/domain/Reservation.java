@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 // Reservation entity
 @Entity
-@Table
+@Table(name = "reservation", schema = "public")
 public class Reservation {
 
     // reservation properties
