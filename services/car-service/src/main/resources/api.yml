@@ -33,6 +33,27 @@ paths:
                 items:
                   $ref: '#/components/schemas/CarDTO'
 
+  /cars/id/{id}:
+    get:
+      summary: Retrieve a car by id number
+      operationId: getCarById
+      parameters:
+        - name: id
+          in: path
+          description: id number of a car to retrieve
+          required: true
+          schema:
+            type: long
+      responses:
+        '200':
+          description: Retrieve success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarDTO'
+        '404':
+          description: Car not found
+
   /cars/vin/{vin}:
     get:
       summary: Retrieve a car by vin number
@@ -67,6 +88,8 @@ paths:
       response:
         '204':
           description: Car removed successfully
+        '404':
+          description: Car not found
 
     put:
       summary: update a car by vin number
@@ -159,11 +182,110 @@ paths:
         '404':
           description: Car not found
 
+  /cars/search:
+    get:
+      summary: Retrieve cars by search query
+      operationId: searchCar
+      parameters:
+        - name: id
+          in: query
+          description: id of a car to search
+          required: false
+          schema:
+            type: long
+        - name: vin
+          in: query
+          description: vin of a car to search
+          required: false
+          schema:
+            type: string
+        - name: make
+          in: query
+          description: make of a car to search
+          required: false
+          schema:
+            type: string
+        - name: model
+          in: query
+          description: model of a car to search
+          required: false
+          schema:
+            type: string
+        - name: carYear
+          in: query
+          description: year of a car to search
+          required: false
+          schema:
+            type: int
+        - name: color
+          in: query
+          description: color of a car to search
+          required: false
+          schema:
+            type: string
+        - name: engine
+          in: query
+          description: engine of a car to search
+          required: false
+          schema:
+            type: string
+        - name: transmission
+          in: query
+          description: transmission of a car to search
+          required: false
+          schema:
+            type: string
+        - name: fuelType
+          in: query
+          description: fuel type of a car to search
+          required: false
+          schema:
+            type: string
+        - name: mileage
+          in: query
+          description: mileage of a car to search
+          required: false
+          schema:
+            type: double
+        - name: price
+          in: query
+          description: price of a car to search
+          required: false
+          schema:
+            type: double
+        - name: ownerId
+          in: query
+          description: owner Id of a car to search
+          required: false
+          schema:
+            type: double
+        - name: features
+          in: query
+          description: features of a car to search
+          required: false
+          schema:
+            type: array
+            items:
+              string
+      responses:
+        '200':
+          description: Retrieve success response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CarDTO'
+        '404':
+          description: Car not found
+
 components:
   schemas:
     CarDTO:
       type: object
       properties:
+        carId:
+          type: long
         vin:
           type: string
         make:

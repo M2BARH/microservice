@@ -6,12 +6,15 @@ import java.util.ArrayList;
 
 // Car entity
 @Entity
-@Table(name = "car", schema = "public")
+@Table(name = "car")
 public class Car {
 
+
     @Id
-    @Column(name = "vin")
     @SequenceGenerator(name = "car-sequence", sequenceName = "car-sequence", allocationSize = 1)
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "vin")
     private String vin;
     @Column(name = "make")
     private String make;
@@ -36,7 +39,10 @@ public class Car {
     @Column(name = "features")
     private ArrayList<String> features;
 
-    public Car(String vin, String make, String model, int carYear, String color, String engine, String transmission, String fuelType, double mileage, double price, double ownerId, ArrayList<String> features) {
+    public Car(Long id, String vin, String make, String model, int carYear,
+               String color, String engine, String transmission, String fuelType,
+               double mileage, double price, double ownerId, ArrayList<String> features) {
+        this.id = id;
         this.vin = vin;
         this.make = make;
         this.model = model;
@@ -56,6 +62,12 @@ public class Car {
     }
 
     // start of getters and setters methods for Car entity
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getMake() {
         return make;
     }

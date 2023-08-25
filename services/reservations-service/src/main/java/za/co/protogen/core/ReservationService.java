@@ -1,9 +1,8 @@
 package za.co.protogen.core;
 
-import org.springframework.stereotype.Service;
 import za.co.protogen.domain.Reservation;
+import za.co.protogen.searchCriteria.SearchCriteria;
 
-import java.time.LocalDate;
 import java.util.List;
 
 // ReservationService interface, implemented by ReservationServiceImpl
@@ -14,6 +13,5 @@ public interface ReservationService {
     Reservation getReservationById(Long id); // retrieve a reservation based on its unique identifier
     List<Reservation> getAllReservation(); // return a list of all reservations from reservations list
     void updateReservation(Long id, Reservation updatedReservation); // update a reservation based on given attributes
-    List<Reservation> searchReservation(Long id, Long userId, Long carId, LocalDate fromDate,
-                                        LocalDate toDate, String pickUpLocation, String dropOffLocation); // returns a list of reservations searched based on given attributes
+    List<Reservation> searchReservation(SearchCriteria criteria); // returns a list of reservations searched based on given attributes
 }

@@ -1,6 +1,7 @@
 package za.co.protogen.core;
 
 import za.co.protogen.domain.User;
+import za.co.protogen.searchCriteria.UserSearchCriteria;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface UserService {
     User getUserById(long id); // retrieve user by unique identifier
     List<User> getAllUsers(); // return a list of all users in a user list
     void updateUser(long id, User updatedUser); // update identified user's attributes
-    List<User> searchUsers(long id, String firstName, String lastName); // search and return list of all users identified by given attributes
+    List<User> searchUsers(UserSearchCriteria criteria); // search and return list of all users identified by given attributes
 }

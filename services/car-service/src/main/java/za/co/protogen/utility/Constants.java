@@ -12,6 +12,7 @@ public class Constants {
     static {
         // Add mock data
         Car car1 = new Car();
+        car1.setId(1L);
         car1.setMake("Toyota");
         car1.setModel("Corolla");
         car1.setCarYear(2021);
@@ -27,6 +28,7 @@ public class Constants {
         cars.add(car1);
 
         Car car2 = new Car();
+        car2.setId(2L);
         car2.setMake("Honda");
         car2.setModel("Civic");
         car2.setCarYear(2020);

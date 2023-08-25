@@ -1,48 +1,63 @@
 package za.co.protogen.core.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import za.co.protogen.core.ReservationService;
+import za.co.protogen.domain.Car;
 import za.co.protogen.domain.Reservation;
+import za.co.protogen.domain.User;
+import za.co.protogen.exception.ReservationNotFoundException;
+import za.co.protogen.feignClients.CarServiceClient;
+import za.co.protogen.feignClients.UserServiceClient;
 import za.co.protogen.persistance.repository.ReservationRepository;
+import za.co.protogen.searchCriteria.SearchCriteria;
+import za.co.protogen.specifications.ReservationSpecifications;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 // reservationServiceImpl which implements ReservationService methods
 @Service
+@RequiredArgsConstructor
 public class ReservationServiceImpl implements ReservationService {
 
     private final ReservationRepository reservationRepository;
-
-    // ReservationServiceImpl constructor
-    @Autowired
-    public ReservationServiceImpl(ReservationRepository reservationRepository) {
-        this.reservationRepository = reservationRepository;
-    }
+    private final CarServiceClient carServiceClient;
+    private final UserServiceClient userServiceClient;
 
     // method to add reservation to reservations list
     @Override
     public void addReservation(Reservation reservation) {
+        User user = userServiceClient.getUser(reservation.getUserId());
+        if (user == null) {
+            throw  new IllegalArgumentException("User with userId: " + reservation.getUserId() + " does not exist");
+        }
+
+        Car car = carServiceClient.getCar(reservation.getCarId());
+        if (car == null) {
+            throw new IllegalArgumentException("car with carId: " + reservation.getCarId() + " does not exist");
+        }
+
         reservationRepository.save(reservation);
     }
 
     // method to remove reservation from reservations list
     @Override
     public void removeReservation(Long id) {
-        boolean exists = reservationRepository.existsById(String.valueOf(id));
+        boolean exists = reservationRepository.existsById(id);
         if (!exists) {// remove reservation identified by id, if it exists
             throw  new IllegalStateException("Reservation with " + id + " does not exist");
         }
-        reservationRepository.deleteById(String.valueOf(id));
+        reservationRepository.deleteById(id);
     }
 
     // method to retrieve user by unique Id
     @Override
     public Reservation getReservationById(Long id) {
-        return reservationRepository.findById(String.valueOf(id)).orElse(null); // retrieve first reservation found
+        return reservationRepository // retrieve first reservation found
+                .findById(id)
+                .orElseThrow(() -> new ReservationNotFoundException(id));
     }
 
     // method that retrieve all reservations in reservations list
@@ -68,14 +83,8 @@ public class ReservationServiceImpl implements ReservationService {
 
     // method to search for a reservations based on given attributes
     @Override
-    public List<Reservation> searchReservation(Long id, Long userId, Long cardId, LocalDate fromDate, LocalDate toDate, String pickUpLocation, String dropOfLocation) {
-        List<Reservation> allReservations = reservationRepository.findAll();
-        return allReservations.stream().filter(reservation -> Objects.equals(reservation.getId(), id) ||
-                Objects.equals(reservation.getUserId(), userId) ||
-                Objects.equals(reservation.getCarId(), cardId) ||
-                reservation.getFromDate().equals(fromDate) ||
-                reservation.getToDate().equals(toDate) ||
-                reservation.getPickUpLocation().toLowerCase().equals(pickUpLocation) ||
-                reservation.getDropOffLocation().toLowerCase().equals(dropOfLocation)).collect(Collectors.toList());
+    public List<Reservation> searchReservation(SearchCriteria criteria) {
+        Specification<Reservation> spec = ReservationSpecifications.buildSpecification(criteria);
+        return reservationRepository.findAll(spec);
     }
 }

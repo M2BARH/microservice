@@ -1,6 +1,6 @@
 package za.co.protogen.adapter;
 
-import com.example.carservice.models.CarDTO;
+import za.co.protogen.controller.models.CarDTO;
 import org.mapstruct.Mapper;
 import za.co.protogen.domain.Car;
 

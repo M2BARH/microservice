@@ -1,10 +1,14 @@
 package za.co.protogen.core.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import za.co.protogen.core.CarService;
 import za.co.protogen.domain.Car;
+import za.co.protogen.exception.CarNotFoundException;
 import za.co.protogen.persistence.repository.CarRepository;
+import za.co.protogen.searchCriteria.CarSearchCriteria;
+import za.co.protogen.specifications.CarSpecifications;
 
 import java.util.Comparator;
 import java.util.List;
@@ -24,16 +28,22 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void removeCar(String vin) {
-        boolean exists = carRepository.existsById(vin);
-        if (!exists) {// remove car identified by vin, if it exists
+        Car car = carRepository.findByVin(vin);
+        if (car == null) {// remove car identified by vin, if it exists
             throw  new IllegalStateException("Car with vin " + vin + " does not exist");
         }
-        carRepository.deleteById(vin);
+        carRepository.delete(car);
     }
 
     @Override
-    public Car getCarById(String vin) {
-        return carRepository.findById(vin).orElse(null);
+    public Car getCarById(Long id) {
+        return carRepository.findById(id)
+                .orElseThrow(() -> new CarNotFoundException(id));
+    }
+
+    @Override
+    public Car getCarByVin(String vin) {
+        return carRepository.findByVin(vin);
     }
 
     @Override
@@ -48,7 +58,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getCarByYear(int carYear) {
-        return carRepository.findByYear(carYear);
+        return carRepository.findByCarYear(carYear);
     }
 
     @Override
@@ -58,7 +68,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void updateCar(String vin, Car updatedCar) {
-        Car existingCar = getCarById(vin);
+        Car existingCar = getCarByVin(vin);
         if (existingCar != null) {
             existingCar.setMake(updatedCar.getMake());
             existingCar.setModel(updatedCar.getModel());
@@ -107,19 +117,8 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public List<Car> searchCars(String make, String model, int carYear, String color, String engine, String transmission,
-                                String fuelType, int mileage, int ownerId, double minPrice, double maxPrice) {
-        List<Car> allCars = carRepository.findAll();
-        return allCars.stream().filter(car -> car.getMake().toLowerCase().equalsIgnoreCase(make) ||
-                car.getModel().toLowerCase().equalsIgnoreCase(model) ||
-                car.getCarYear() == carYear ||
-                car.getColor().toLowerCase().equalsIgnoreCase(color) ||
-                car.getEngine().toLowerCase().equalsIgnoreCase(engine) ||
-                car.getTransmission().toLowerCase().equalsIgnoreCase(transmission) ||
-                car.getFuelType().toLowerCase().equalsIgnoreCase(fuelType) ||
-                car.getMileage() == mileage ||
-                car.getOwnerId() == ownerId ||
-                car.getPrice() >= minPrice ||
-                car.getPrice() <= maxPrice).collect(Collectors.toList());
+    public List<Car> searchCars(CarSearchCriteria criteria) {
+        Specification<Car> spec = CarSpecifications.builderSpecification(criteria);
+        return carRepository.findAll(spec);
     }
 }

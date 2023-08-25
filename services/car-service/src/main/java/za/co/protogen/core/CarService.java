@@ -1,6 +1,7 @@
 package za.co.protogen.core;
 
 import za.co.protogen.domain.Car;
+import za.co.protogen.searchCriteria.CarSearchCriteria;
 
 import java.util.List;
 
@@ -12,7 +13,9 @@ public interface CarService {
 
     void removeCar(String vin); // remove car object from cars list
 
-    Car getCarById(String vin); // get car by its unique identifier(vin)
+    Car getCarById(Long id); // get car by its unique identifier(id)
+
+    Car getCarByVin(String vin); // get car by its unique identifier(vin)
 
     List<Car> getAllCars(); // retrieve a list of all cars in a car list
 
@@ -34,6 +37,5 @@ public interface CarService {
 
     Car findOldestCar(); // retrieve the oldest can in a cars list
 
-    List<Car> searchCars(String make, String model, int carYear, String color, String engine, String transmission,
-                         String fuelType, int mileage, int ownerId, double minPrice, double maxPrice);  // retrieve a list of all cars identified by given attributes
+    List<Car> searchCars(CarSearchCriteria criteria);  // retrieve a list of all cars identified by given attributes
 }

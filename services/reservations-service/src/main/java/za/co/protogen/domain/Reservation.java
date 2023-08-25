@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 // Reservation entity
 @Entity
-@Table(name = "reservation", schema = "public")
+@Table(name = "reservation")
 public class Reservation {
 
     // reservation properties

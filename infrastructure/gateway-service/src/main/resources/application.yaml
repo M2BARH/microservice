@@ -2,15 +2,18 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: cars-route
-          uri: lb://carservice
+        - id: car-service
+          uri: lb://car-service
           predicates:
-            - Path=/cars/**
-        - id: reservations-route
-          uri: lb://reservationservice
+            - Path = /cars/**
+
+        - id: reservation-service
+          uri: lb://reservation-service
           predicates:
-            - Path=/reservations/**
-        - id: users-route
-          uri: lb://userservice
+            - Path = /reservations/**
+
+        - id: user-service
+          uri: lb://user-service
           predicates:
-            - Path=/users/**
+            - Path = /users/**
+

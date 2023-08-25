@@ -78,7 +78,7 @@ paths:
           required: true
           schema:
             type: long
-      requiredBody:
+      requestBody:
         required: true
         content:
           application/json:
@@ -87,6 +87,59 @@ paths:
       responses:
         '200':
           description: Reservation updated successfully
+        '404':
+          description: Reservation not found
+
+  /reservations/search:
+    get:
+      summary: Retrieve reservations by search query
+      operationId: searchReservation
+      parameters:
+        - name: userId
+          in: query
+          description: id of a car to search
+          required: false
+          schema:
+            type: long
+        - name: carId
+          in: query
+          description: id of a car to search
+          required: false
+          schema:
+            type: long
+        - name: fromDate
+          in: query
+          description: date of a reservation to search
+          required: false
+          schema:
+            type: date
+        - name: toDate
+          in: query
+          description: date of a reservation to search
+          required: false
+          schema:
+            type: date
+        - name: pickUpLocation
+          in: query
+          description: pick up location of a reservation to search
+          required: false
+          schema:
+            type: string
+        - name: dropOffLocation
+          in: query
+          description: drop off location of a reservation to search
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Reservation query successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReservationDTO'
         '404':
           description: Reservation not found
 
