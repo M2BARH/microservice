@@ -1,0 +1,29 @@
+server:
+  port: 9000
+
+logging:
+  level:
+    org.springframework.security: trace
+
+spring:
+  security:
+    oauth2:
+      authorizationserver:
+        client:
+          oidc-client:
+            registration:
+              client-id: "oidc-client"
+              client-secret: "{poop}secrete"
+              client-authentication-methods:
+                - "client_secrete_basic"
+              authorization-grant-types:
+                - "authorization_code"
+                - "refresh_token"
+              redirect-uris:
+                - "http://localhost:9101/cars/"
+              post-logout-redirect-uris:
+                - "http:localhost:9101/"
+              scopes:
+                - "openid"
+                - "profile"
+              require-authorization-console: true
