@@ -4,12 +4,22 @@ import org.threeten.bp.LocalDate;
 
 public class SearchCriteria {
 
+    private Long id;
     private Long userId;
     private Long carId;
     private LocalDate fromDate;
     private LocalDate toDate;
     private String pickUpLocation;
     private String dropOffLocation;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getUserId() {
         return userId;

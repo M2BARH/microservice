@@ -49,11 +49,11 @@ public class ReservationServiceApiController implements ReservationsApi {
         logger.info("Getting reservation identified by: " + id + ", from the database");
         return ResponseEntity.ok(reservationMapper.
                 reservationToDTO(reservationServiceImpl
-                .getReservationById(id)));
+                        .getReservationById(id)));
     }
 
     @Override
-    public ResponseEntity<Void> removeReservationById(Long id) {
+    public ResponseEntity<Void> removeReservation(Long id) {
         logger.info("Removing reservation identified by: " + id + ", from the database");
         reservationServiceImpl.removeReservation(id);
         return ResponseEntity.status(HttpStatus.OK).build();
@@ -61,12 +61,13 @@ public class ReservationServiceApiController implements ReservationsApi {
 
     @Override
     public ResponseEntity<List<ReservationDTO>>
-    searchReservation(Long userId, Long carId,
+    searchReservation(Long id, Long userId, Long carId,
                       @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
                       @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
                       String pickUpLocation, String dropOffLocation) {
         logger.info("Searching for a reservation from the database");
         SearchCriteria criteria = new SearchCriteria();
+        criteria.setId(id);
         criteria.setUserId(userId);
         criteria.setCarId(carId);
         criteria.setFromDate(fromDate);

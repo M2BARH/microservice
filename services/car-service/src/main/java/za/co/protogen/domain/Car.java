@@ -21,7 +21,7 @@ public class Car {
     @Column(name = "model")
     private String model;
     @Column(name = "car_year")
-    private int carYear;
+    private Integer carYear;
     @Column(name = "color")
     private String color;
     @Column(name = "engine")
@@ -31,17 +31,17 @@ public class Car {
     @Column(name = "fuel_type")
     private String fuelType;
     @Column(name = "mileage")
-    private double mileage;
+    private Double mileage;
     @Column(name = "price")
-    private double price;
+    private Double price;
     @Column(name = "owner_id")
-    private double ownerId;
+    private Double ownerId;
     @Column(name = "features")
     private ArrayList<String> features;
 
-    public Car(Long id, String vin, String make, String model, int carYear,
+    public Car(Long id, String vin, String make, String model, Integer carYear,
                String color, String engine, String transmission, String fuelType,
-               double mileage, double price, double ownerId, ArrayList<String> features) {
+               Double mileage, Double price, Double ownerId, ArrayList<String> features) {
         this.id = id;
         this.vin = vin;
         this.make = make;
@@ -84,11 +84,11 @@ public class Car {
         this.model = model;
     }
 
-    public int getCarYear() {
+    public Integer getCarYear() {
         return carYear;
     }
 
-    public void setCarYear(int carYear) {
+    public void setCarYear(Integer carYear) {
         this.carYear = carYear;
     }
 
@@ -124,11 +124,11 @@ public class Car {
         this.fuelType = fuelType;
     }
 
-    public double getMileage() {
+    public Double getMileage() {
         return mileage;
     }
 
-    public void setMileage(double mileage) {
+    public void setMileage(Double mileage) {
         this.mileage = mileage;
     }
 
@@ -140,19 +140,19 @@ public class Car {
         this.vin = vin;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public double getOwnerId() {
+    public Double getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(double ownerId) {
+    public void setOwnerId(Double ownerId) {
         this.ownerId = ownerId;
     }
 

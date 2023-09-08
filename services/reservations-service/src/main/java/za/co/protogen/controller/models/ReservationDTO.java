@@ -21,7 +21,7 @@ public class ReservationDTO   {
   @JsonProperty("userId")
   private Long userId = null;
 
-  @JsonProperty("cardId")
+  @JsonProperty("carId")
   private Long carId = null;
 
   @JsonProperty("fromDate")
@@ -74,8 +74,8 @@ public class ReservationDTO   {
     this.userId = userId;
   }
 
-  public ReservationDTO cardId(Long cardId) {
-    this.carId = cardId;
+  public ReservationDTO carId(Long carId) {
+    this.carId = carId;
     return this;
   }
 

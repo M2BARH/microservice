@@ -26,4 +26,4 @@ spring:
               scopes:
                 - "openid"
                 - "profile"
-              require-authorization-console: true
+#              require-authorization-console: true

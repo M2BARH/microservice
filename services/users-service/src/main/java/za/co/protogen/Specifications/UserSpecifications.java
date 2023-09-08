@@ -28,7 +28,9 @@ public class UserSpecifications {
                 predicates.add(criteriaBuilder.equal(root.get("lastName"), criteria.getLastName()));
             }
 
-            predicates.add(criteriaBuilder.equal(root.get("dateOfBirth"), criteria.getDateOfBirth()));
+            if (criteria.getDateOfBirth() != null) {
+                predicates.add(criteriaBuilder.equal(root.get("dateOfBirth"), criteria.getDateOfBirth()));
+            }
 
             if (criteria.getRsaId() != null) {
                 predicates.add(criteriaBuilder.equal(root.get("rsaId"), criteria.getRsaId()));

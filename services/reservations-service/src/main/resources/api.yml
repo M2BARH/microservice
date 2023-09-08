@@ -95,15 +95,21 @@ paths:
       summary: Retrieve reservations by search query
       operationId: searchReservation
       parameters:
+        - name: id
+          in: query
+          description: id of a reservation to search
+          required: false
+          schema:
+            type: long
         - name: userId
           in: query
-          description: id of a car to search
+          description: id of a user to search by
           required: false
           schema:
             type: long
         - name: carId
           in: query
-          description: id of a car to search
+          description: id of a car to search by
           required: false
           schema:
             type: long
@@ -152,7 +158,7 @@ components:
           type: long
         userId:
           type: long
-        cardId:
+        carId:
           type: long
         fromDate:
           type: date

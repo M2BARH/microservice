@@ -3,12 +3,11 @@ package za.co.protogen.specifications;
 import jakarta.persistence.criteria.Predicate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
+import za.co.protogen.domain.Reservation;
+import za.co.protogen.searchCriteria.SearchCriteria;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import za.co.protogen.domain.Reservation;
-import za.co.protogen.searchCriteria.SearchCriteria;
 
 @RequiredArgsConstructor
 public class ReservationSpecifications {
@@ -16,6 +15,10 @@ public class ReservationSpecifications {
     public static Specification<Reservation> buildSpecification(SearchCriteria criteria) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
+
+            if (criteria.getId() != null) {
+                predicates.add(criteriaBuilder.equal(root.get("id"), criteria.getId()));
+            }
 
             if (criteria.getUserId() != null) {
                 predicates.add(criteriaBuilder.equal(root.get("userId"), criteria.getUserId()));

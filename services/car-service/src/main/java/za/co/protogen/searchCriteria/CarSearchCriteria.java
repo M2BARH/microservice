@@ -1,5 +1,6 @@
 package za.co.protogen.searchCriteria;
 
+import io.swagger.models.auth.In;
 import jakarta.persistence.Column;
 
 import java.util.ArrayList;
@@ -9,14 +10,14 @@ public class CarSearchCriteria {
     private String vin;
     private String make;
     private String model;
-    private int carYear;
+    private Integer carYear;
     private String color;
     private String engine;
     private String transmission;
     private String fuelType;
-    private double mileage;
-    private double price;
-    private double ownerId;
+    private Double mileage;
+    private Double price;
+    private Double ownerId;
     private ArrayList<String> features;
 
     public void setId(Long id) {
@@ -35,7 +36,7 @@ public class CarSearchCriteria {
         this.model = model;
     }
 
-    public void setCarYear(int carYear) {
+    public void setCarYear(Integer carYear) {
         this.carYear = carYear;
     }
 
@@ -55,15 +56,15 @@ public class CarSearchCriteria {
         this.fuelType = fuelType;
     }
 
-    public void setMileage(double mileage) {
+    public void setMileage(Double mileage) {
         this.mileage = mileage;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public void setOwnerId(double ownerId) {
+    public void setOwnerId(Double ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -87,7 +88,7 @@ public class CarSearchCriteria {
         return model;
     }
 
-    public int getCarYear() {
+    public Integer getCarYear() {
         return carYear;
     }
 
@@ -107,15 +108,15 @@ public class CarSearchCriteria {
         return fuelType;
     }
 
-    public double getMileage() {
+    public Double getMileage() {
         return mileage;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public double getOwnerId() {
+    public Double getOwnerId() {
         return ownerId;
     }
 

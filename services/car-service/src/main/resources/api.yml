@@ -43,7 +43,7 @@ paths:
           description: id number of a car to retrieve
           required: true
           schema:
-            type: long
+            type: number
       responses:
         '200':
           description: Retrieve success response
@@ -85,7 +85,7 @@ paths:
           required: true
           schema:
             type: string
-      response:
+      responses:
         '204':
           description: Car removed successfully
         '404':
@@ -169,7 +169,7 @@ paths:
           description: year of a car to retrieve
           required: true
           schema:
-            type: int
+            type: number
       responses:
         '200':
           description: Retrieve success response
@@ -192,7 +192,7 @@ paths:
           description: id of a car to search
           required: false
           schema:
-            type: long
+            type: number
         - name: vin
           in: query
           description: vin of a car to search
@@ -216,7 +216,7 @@ paths:
           description: year of a car to search
           required: false
           schema:
-            type: int
+            type: number
         - name: color
           in: query
           description: color of a car to search
@@ -246,19 +246,19 @@ paths:
           description: mileage of a car to search
           required: false
           schema:
-            type: double
+            type: number
         - name: price
           in: query
           description: price of a car to search
           required: false
           schema:
-            type: double
+            type: number
         - name: ownerId
           in: query
           description: owner Id of a car to search
           required: false
           schema:
-            type: double
+            type: number
         - name: features
           in: query
           description: features of a car to search
@@ -285,7 +285,7 @@ components:
       type: object
       properties:
         carId:
-          type: long
+          type: number
         vin:
           type: string
         make:
@@ -293,20 +293,20 @@ components:
         model:
           type: string
         carYear:
-          type: int
+          type: number
         color:
           type: string
         engine:
-          type: string
+          type: number
         transmission:
           type: string
         fuelType:
           type: string
         mileage:
-          type: string
+          type: number
         price:
-          type: double
+          type: number
         ownerId:
-          type: double
+          type: number
         features:
-          type: arrayList
+          type: array

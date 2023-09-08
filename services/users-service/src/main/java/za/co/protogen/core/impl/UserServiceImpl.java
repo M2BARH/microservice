@@ -60,9 +60,22 @@ public class UserServiceImpl implements UserService {
     public void updateUser(long id, User updatedUser) {
         User existingUser = getUserById(id); // return existing user by calling a getUser method
         if (existingUser != null) { // if user do exist from the list. the following attributes are updated
-            existingUser.setId(updatedUser.getId());
-            existingUser.setFirstName(updatedUser.getFirstName());
-            existingUser.setLastName(updatedUser.getLastName());
+
+            updatedUser.setId(existingUser.getId());
+
+            if (updatedUser.getFirstName() == null) {
+                updatedUser.setFirstName(existingUser.getFirstName());
+            }
+            if (updatedUser.getLastName() == null) {
+                updatedUser.setLastName(existingUser.getLastName());
+            }
+            if (updatedUser.getDateOfBirth() == null) {
+                updatedUser.setDateOfBirth(existingUser.getDateOfBirth());
+            }
+            if (updatedUser.getRsaId() == null) {
+                updatedUser.setRsaId(existingUser.getRsaId());
+            }
+            userRepository.save(updatedUser);
         }
     }
 

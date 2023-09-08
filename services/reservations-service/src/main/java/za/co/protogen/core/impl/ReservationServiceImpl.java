@@ -71,13 +71,28 @@ public class ReservationServiceImpl implements ReservationService {
     public void updateReservation(Long id, Reservation updatedReservation) {
         Reservation existingReservation = getReservationById(id); // retrieve reservation by unique id
         if (existingReservation != null) { // if the reservation is present within the list. The following attributes are updated
-            existingReservation.setId(updatedReservation.getId());
-            existingReservation.setUserId(updatedReservation.getUserId());
-            existingReservation.setCarId(updatedReservation.getCarId());
-            existingReservation.setFromDate(updatedReservation.getFromDate());
-            existingReservation.setToDate(updatedReservation.getToDate());
-            existingReservation.setPickUpLocation(updatedReservation.getPickUpLocation());
-            existingReservation.setDropOffLocation(updatedReservation.getDropOffLocation());
+
+            updatedReservation.setId(existingReservation.getId());
+
+            if (updatedReservation.getUserId() == null) {
+                updatedReservation.setUserId(existingReservation.getUserId());
+            }
+            if (updatedReservation.getCarId() == null) {
+                updatedReservation.setCarId(existingReservation.getCarId());
+            }
+            if (updatedReservation.getFromDate() == null) {
+                updatedReservation.setFromDate(existingReservation.getFromDate());
+            }
+            if (updatedReservation.getToDate() == null) {
+                updatedReservation.setToDate(existingReservation.getToDate());
+            }
+            if (updatedReservation.getPickUpLocation() == null) {
+                updatedReservation.setPickUpLocation(existingReservation.getPickUpLocation());
+            }
+            if (updatedReservation.getDropOffLocation() == null) {
+                updatedReservation.setDropOffLocation(existingReservation.getDropOffLocation());
+            }
+            reservationRepository.save(updatedReservation);
         }
     }
 

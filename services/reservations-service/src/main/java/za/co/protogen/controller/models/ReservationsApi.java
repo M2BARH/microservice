@@ -60,7 +60,7 @@ public interface ReservationsApi {
             @ApiResponse(responseCode = "204", description = "Reservation removed successfully") })
     @RequestMapping(value = "/reservations/{id}",
             method = RequestMethod.DELETE)
-    ResponseEntity<Void> removeReservationById(@NotNull @Parameter(in = ParameterIn.PATH, description = "id of a reservation to remove" ,required=true,schema=@Schema()) @Valid @RequestParam(value = "id", required = true) Long id);
+    ResponseEntity<Void> removeReservation(@NotNull @Parameter(in = ParameterIn.PATH, description = "id of a reservation to remove" ,required=true,schema=@Schema()) @Valid @PathVariable(value = "id", required = true) Long id);
 
 
     @Operation(summary = "Retrieve reservations by search query", description = "", tags={  })
@@ -71,7 +71,7 @@ public interface ReservationsApi {
     @RequestMapping(value = "/reservations/search",
             produces = { "application/json" },
             method = RequestMethod.GET)
-    ResponseEntity<List<ReservationDTO>> searchReservation(@Parameter(in = ParameterIn.QUERY, description = "id of a user to search" ,schema=@Schema()) @Valid @RequestParam(value = "userId", required = false) Long userId, @Parameter(in = ParameterIn.QUERY, description = "id of a car to search" ,schema=@Schema()) @Valid @RequestParam(value = "carId", required = false) Long carId, @Parameter(in = ParameterIn.QUERY, description = "date of a reservation to search" ,schema=@Schema()) @Valid @RequestParam(value = "fromDate", required = false) LocalDate fromDate, @Parameter(in = ParameterIn.QUERY, description = "date of a reservation to search" ,schema=@Schema()) @Valid @RequestParam(value = "toDate", required = false) LocalDate toDate, @Parameter(in = ParameterIn.QUERY, description = "pick up location of a reservation to search" ,schema=@Schema()) @Valid @RequestParam(value = "pickUpLocation", required = false) String pickUpLocation, @Parameter(in = ParameterIn.QUERY, description = "drop off location of a reservation to search" ,schema=@Schema()) @Valid @RequestParam(value = "dropOffLocation", required = false) String dropOffLocation);
+    ResponseEntity<List<ReservationDTO>> searchReservation(@Parameter(in = ParameterIn.QUERY, description = "id of a reservation to search" ,schema=@Schema()) @Valid @RequestParam(value = "id", required = false) Long id, @Parameter(in = ParameterIn.QUERY, description = "id of a user to search" ,schema=@Schema()) @Valid @RequestParam(value = "userId", required = false) Long userId, @Parameter(in = ParameterIn.QUERY, description = "id of a car to search" ,schema=@Schema()) @Valid @RequestParam(value = "carId", required = false) Long carId, @Parameter(in = ParameterIn.QUERY, description = "date of a reservation to search" ,schema=@Schema()) @Valid @RequestParam(value = "fromDate", required = false) LocalDate fromDate, @Parameter(in = ParameterIn.QUERY, description = "date of a reservation to search" ,schema=@Schema()) @Valid @RequestParam(value = "toDate", required = false) LocalDate toDate, @Parameter(in = ParameterIn.QUERY, description = "pick up location of a reservation to search" ,schema=@Schema()) @Valid @RequestParam(value = "pickUpLocation", required = false) String pickUpLocation, @Parameter(in = ParameterIn.QUERY, description = "drop off location of a reservation to search" ,schema=@Schema()) @Valid @RequestParam(value = "dropOffLocation", required = false) String dropOffLocation);
 
 
     @Operation(summary = "update reservation by id", description = "", tags={  })

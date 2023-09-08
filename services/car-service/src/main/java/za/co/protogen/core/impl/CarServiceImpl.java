@@ -70,18 +70,43 @@ public class CarServiceImpl implements CarService {
     public void updateCar(String vin, Car updatedCar) {
         Car existingCar = getCarByVin(vin);
         if (existingCar != null) {
-            existingCar.setMake(updatedCar.getMake());
-            existingCar.setModel(updatedCar.getModel());
-            existingCar.setCarYear(updatedCar.getCarYear());
-            existingCar.setColor(updatedCar.getColor());
-            existingCar.setEngine(updatedCar.getEngine());
-            existingCar.setTransmission(updatedCar.getTransmission());
-            existingCar.setFuelType(updatedCar.getFuelType());
-            existingCar.setMileage(updatedCar.getMileage());
-            existingCar.setVin(updatedCar.getVin());
-            existingCar.setPrice(updatedCar.getPrice());
-            existingCar.setOwnerId(updatedCar.getOwnerId());
-            existingCar.setFeatures(updatedCar.getFeatures());
+
+            updatedCar.setId(existingCar.getId());
+
+            if (updatedCar.getMake() == null) {
+                updatedCar.setMake(existingCar.getMake());
+            }
+            if (updatedCar.getModel() == null) {
+                updatedCar.setModel(existingCar.getModel());
+            }
+            if (updatedCar.getCarYear() == null) {
+                updatedCar.setCarYear(existingCar.getCarYear());
+            }
+            if (updatedCar.getColor() == null) {
+                updatedCar.setColor(existingCar.getColor());
+            }
+            if (updatedCar.getEngine() == null) {
+                updatedCar.setEngine(existingCar.getEngine());
+            }
+            if (updatedCar.getTransmission() == null) {
+                updatedCar.setTransmission(existingCar.getTransmission());
+            }
+            if (updatedCar.getFuelType() == null) {
+                updatedCar.setFuelType(existingCar.getFuelType());
+            }
+            if (updatedCar.getMileage() == null) {
+                updatedCar.setMileage(existingCar.getMileage());
+            }
+            if (updatedCar.getVin() == null) {
+                updatedCar.setVin(existingCar.getVin());
+            }
+            if (updatedCar.getPrice() == null) {
+                updatedCar.setPrice(existingCar.getPrice());
+            }
+            if (updatedCar.getOwnerId() == null) {
+                updatedCar.setOwnerId(existingCar.getOwnerId());
+            }
+            carRepository.save(updatedCar);
         }
     }
 

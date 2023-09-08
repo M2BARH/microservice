@@ -9,5 +9,5 @@ import za.co.protogen.domain.User;
 public interface UserServiceClient {
 
     @GetMapping("/{id}")
-    User getUser(@PathVariable("id") Long useId);
+    User getUser(@PathVariable("id") Long userId);
 }

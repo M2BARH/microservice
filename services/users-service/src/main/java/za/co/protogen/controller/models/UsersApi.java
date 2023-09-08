@@ -26,30 +26,30 @@ import java.util.List;
 public interface UsersApi {
 
     @Operation(summary = "Creates a user", description = "", tags={  })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(responseCode = "201", description = "User added successfully") })
     @RequestMapping(value = "/users",
-        consumes = { "application/json" }, 
+        consumes = { "application/json" },
         method = RequestMethod.POST)
     ResponseEntity<Void> addUser(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody UserDTO body);
 
 
     @Operation(summary = "Retrieves all users that a user has access to", description = "", tags={  })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Retrieve success response", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = UserDTO.class)))) })
     @RequestMapping(value = "/users",
-        produces = { "application/json" }, 
+        produces = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<List<UserDTO>> getAllUser();
 
 
     @Operation(summary = "Retrieve a user by id", description = "", tags={  })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Retrieve success response", content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserDTO.class))),
-        
+
         @ApiResponse(responseCode = "404", description = "User not found") })
     @RequestMapping(value = "/users/{id}",
-        produces = { "application/json" }, 
+        produces = { "application/json" },
         method = RequestMethod.GET)
     ResponseEntity<UserDTO> getUserById(@Parameter(in = ParameterIn.PATH, description = "id of a user to retrieve", required=true, schema=@Schema()) @PathVariable("id") Long id);
 
@@ -73,13 +73,13 @@ public interface UsersApi {
 
 
     @Operation(summary = "update a user by id", description = "", tags={  })
-    @ApiResponses(value = { 
+    @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "User updated successfully"),
-        
+
         @ApiResponse(responseCode = "404", description = "User not found") })
     @RequestMapping(value = "/users/{id}",
         method = RequestMethod.PUT)
-    ResponseEntity<Void> updateUser(@Parameter(in = ParameterIn.PATH, description = "id of a user to update", required=true, schema=@Schema()) @PathVariable("id") Long id);
+    ResponseEntity<Void> updateUser(@Parameter(in = ParameterIn.PATH, description = "id of a user to update", required=true, schema=@Schema()) @PathVariable("id") Long id, @Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody UserDTO userDTO);
 
 }
 

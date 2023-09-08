@@ -78,7 +78,7 @@ paths:
           required: true
           schema:
             type: long
-      requiredBody:
+      requestBody:
         required: true
         content:
           application/json:

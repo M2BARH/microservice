@@ -32,8 +32,6 @@ public class CarSpecifications {
                 predicates.add(criteriaBuilder.equal(root.get("model"), criteria.getModel()));
             }
 
-            predicates.add(criteriaBuilder.equal(root.get("carYear"), criteria.getCarYear()));
-
             if (criteria.getColor() != null) {
                 predicates.add(criteriaBuilder.equal(root.get("color"), criteria.getColor()));
             }
@@ -50,11 +48,21 @@ public class CarSpecifications {
                 predicates.add(criteriaBuilder.equal(root.get("fuelType"), criteria.getFuelType()));
             }
 
-            predicates.add(criteriaBuilder.equal(root.get("mileage"), criteria.getMileage()));
+            if (criteria.getCarYear() != null) {
+                predicates.add(criteriaBuilder.equal(root.get("carYear"), criteria.getCarYear()));
+            }
 
-            predicates.add(criteriaBuilder.equal(root.get("price"), criteria.getPrice()));
+            if (criteria.getMileage() != null) {
+                predicates.add(criteriaBuilder.equal(root.get("mileage"), criteria.getMileage()));
+            }
 
-            predicates.add(criteriaBuilder.equal(root.get("ownerId"), criteria.getOwnerId()));
+            if (criteria.getPrice() != null) {
+                predicates.add(criteriaBuilder.equal(root.get("price"), criteria.getPrice()));
+            }
+
+            if (criteria.getOwnerId() != null) {
+                predicates.add(criteriaBuilder.equal(root.get("ownerId"), criteria.getOwnerId()));
+            }
 
             if (criteria.getFeatures() != null) {
                 predicates.add(criteriaBuilder.equal(root.get("features"), criteria.getFeatures()));

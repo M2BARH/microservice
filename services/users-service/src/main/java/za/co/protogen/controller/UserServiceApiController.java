@@ -3,7 +3,9 @@ package za.co.protogen.controller;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import java.time.LocalDate;
+
 import za.co.protogen.controller.models.UsersApi;
 import za.co.protogen.controller.models.UserDTO;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +28,7 @@ import java.util.List;
 public class UserServiceApiController implements UsersApi {
 
     private final UserServiceImpl userServiceImpl;
-    private  final UserMapper userMapper;
+    private final UserMapper userMapper;
     private final Logger logger = LoggerFactory.getLogger(UserServiceApiController.class);
 
     @Override
@@ -73,9 +75,9 @@ public class UserServiceApiController implements UsersApi {
     }
 
     @Override
-    public ResponseEntity<Void> updateUser(Long id) {
+    public ResponseEntity<Void> updateUser(Long id, UserDTO userDTO) {
         logger.info("Fetching adding a car identified by: " + id + ", and updating them");
-        userServiceImpl.updateUser(id, userServiceImpl.getUserById(id));
+        userServiceImpl.updateUser(id, userMapper.dtoToUser(userDTO));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

@@ -106,7 +106,7 @@ public class CarServiceApiController implements CarsApi {
     @Override
     public ResponseEntity<Void> updateCar(String vin, CarDTO carDTO) {
         logger.info("Fetching a car identified by vin: " + vin + " and updating it");
-        carServiceImpl.updateCar(vin, carServiceImpl.getCarByVin(vin));
+        carServiceImpl.updateCar(vin, carMapper.dtoToCar(carDTO));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
