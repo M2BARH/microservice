@@ -63,8 +63,8 @@ paths:
           description: id of a user to remove
           required: true
           schema:
-            type: long
-      response:
+            type: number
+      responses:
         '204':
           description: User removed successfully
 
@@ -136,6 +136,22 @@ paths:
                   $ref: '#/components/schemas/UserDTO'
         '404':
           description: User not found
+
+  /users/login:
+    post:
+      summary: login a user
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserDTO'
+      responses:
+        '201':
+          description: User login successfully
+        '404':
+          description: User login failed
 
 components:
   schemas:

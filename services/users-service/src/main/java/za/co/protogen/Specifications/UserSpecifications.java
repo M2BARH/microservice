@@ -36,7 +36,7 @@ public class UserSpecifications {
                 predicates.add(criteriaBuilder.equal(root.get("rsaId"), criteria.getRsaId()));
             }
 
-            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+            return criteriaBuilder.or(predicates.toArray(new Predicate[0]));
         };
     }
 }

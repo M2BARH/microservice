@@ -3,23 +3,22 @@ spring:
     gateway:
       routes:
         - id: car-service
-          uri: lb://car-service
+          uri: lb://CAR-SERVICE # Use the registered service name
           predicates:
-            - Path = car-service/cars/**
+            - Path=/cars/**
           filters:
-            - StripPrefix = 1
+            - StripPrefix=1
 
         - id: reservation-service
-          uri: lb://reservation-service
+          uri: lb://RESERVATION-SERVICE # Use the registered service name
           predicates:
-            - Path = reservation-service/reservations/**
+            - Path=/reservations/**
           filters:
-            - StripPrefix = 1
+            - StripPrefix=1
 
         - id: user-service
-          uri: lb://user-service
+          uri: lb://USER-SERVICE # Use the registered service name
           predicates:
-            - Path = user-service/users/**
+            - Path=/users/**
           filters:
-            - StripPrefix = 1
-
+            - StripPrefix=1

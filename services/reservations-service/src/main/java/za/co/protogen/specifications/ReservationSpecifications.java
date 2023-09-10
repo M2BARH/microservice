@@ -48,7 +48,7 @@ public class ReservationSpecifications {
                         criteria.getDropOffLocation()));
             }
 
-            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+            return criteriaBuilder.or(predicates.toArray(new Predicate[0]));
         };
     }
 }
