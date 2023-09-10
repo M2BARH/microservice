@@ -1,0 +1,282 @@
+{
+	"info": {
+		"_postman_id": "675a2451-2dd6-477b-ab36-8261102e1005",
+		"name": "carServicePostman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29285209"
+	},
+	"item": [
+		{
+			"name": "addCar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 3,\r\n        \"vin\": \"CBA123\",\r\n        \"make\": \"Ford\",\r\n        \"model\": \"Ranger\",\r\n        \"carYear\": 2017,\r\n        \"color\": \"White\",\r\n        \"engine\": \"2.1L\",\r\n        \"transmission\": \"Manual\",\r\n        \"fuelType\": \"Gasoline\",\r\n        \"mileage\": \"10500.0\",\r\n        \"price\": 42000.0,\r\n        \"ownerId\": 321.0,\r\n        \"features\": [\"Tow Bar\", \"LED Headlight\"]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/car-service/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"car-service",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllCars",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "ed82b230-9210-4808-86bf-d3ce81d8cfbf",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/car-service/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"car-service",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCarByVin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/car-service/cars/vin/ABC123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"car-service",
+						"cars",
+						"vin",
+						"ABC123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCarById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/car-service/cars/id/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"car-service",
+						"cars",
+						"id",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "removeCar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/car-service/cars/vin/ABC123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"car-service",
+						"cars",
+						"vin",
+						"ABC123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateCar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"price\": 40000,\r\n    \"features\": [\"BBS rim\"]\r\n}\r\n    ",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/car-service/cars/vin/ABC123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"car-service",
+						"cars",
+						"vin",
+						"ABC123"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCarByMake",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/car-service/cars/make/Toyota",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"car-service",
+						"cars",
+						"make",
+						"Toyota"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCarByColor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/car-service/cars/color/Red",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"car-service",
+						"cars",
+						"color",
+						"Red"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searchCar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/car-service/cars/search?carYear=2017&ownerId=456&color=White",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"car-service",
+						"cars",
+						"search"
+					],
+					"query": [
+						{
+							"key": "carYear",
+							"value": "2017"
+						},
+						{
+							"key": "mileage",
+							"value": "15000",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "22000",
+							"disabled": true
+						},
+						{
+							"key": "ownerId",
+							"value": "456"
+						},
+						{
+							"key": "color",
+							"value": "White"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCarByYear",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/car-service/cars/year/2021",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"car-service",
+						"cars",
+						"year",
+						"2021"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
